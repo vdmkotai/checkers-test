@@ -8,8 +8,6 @@ const Board: React.FC = () => {
   const { state, dispatch } = useGameState()
   const { board } = state
 
-  console.log('Board: ', board)
-
   const handleDrop =
     (row: number, col: number) => (event: React.DragEvent<HTMLDivElement>) => {
       event.preventDefault()
@@ -18,11 +16,6 @@ const Board: React.FC = () => {
         event.dataTransfer.getData('text/plain')
       )
 
-      console.log('TRYING MOVE', {
-        from: { row: fromRow, col: fromCol },
-        to: { row, col },
-      })
-
       dispatch({
         type: 'MOVE_CHECKER',
         payload: {
@@ -30,6 +23,10 @@ const Board: React.FC = () => {
           to: { row, col },
         },
       })
+
+      setTimeout(() => {
+        dispatch({ type: 'AI_MOVE' })
+      }, 500)
     }
 
   const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {

@@ -37,3 +37,4 @@ export type Action =
   | { type: 'MOVE_CHECKER'; payload: { from: Position; to: Position } }
   | { type: 'RESET'; payload: PlayerSide }
   | { type: 'SET_POSSIBLE_MOVES'; payload: Move[] }
+  | { type: 'AI_MOVE' }

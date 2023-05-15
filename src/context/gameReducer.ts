@@ -84,11 +84,10 @@ export const gameReducer = (state: State, action: Action): State => {
         newState.board[to.row][to.col].checkerType = CheckerType.RedKing
       }
 
-      // Update the possible moves after the player's turn
-      newState = {
-        ...newState,
-        possibleMoves: getAllValidMoves(newState, CheckerType.Black),
-      }
+      return newState
+    }
+    case 'AI_MOVE': {
+      let newState = { ...state }
 
       // Simulate AI's turn
       const aiMove = makeAIMove(newState, CheckerType.Black)
@@ -121,12 +120,6 @@ export const gameReducer = (state: State, action: Action): State => {
           ) {
             newState.board[aiMove.to.row][aiMove.to.col].checkerType =
               CheckerType.BlackKing
-          }
-
-          // Update the possible moves after the AI's turn
-          newState = {
-            ...newState,
-            possibleMoves: getAllValidMoves(newState, CheckerType.Red),
           }
         } else {
           console.error('Invalid AI move.')
