@@ -7,8 +7,7 @@ const isValidPosition = (row: number, col: number) => {
 export const getPossibleMoves = (
   state: State,
   row: number,
-  col: number,
-  captured: Position[] = []
+  col: number
 ): Move[] => {
   const checkerType = state.board[row][col].checkerType
 
@@ -246,22 +245,6 @@ export const makeAIMove = (
   }
 
   return chooseRandomMove(validMoves)
-}
-
-export const makeMove = (state: State, from: Position, to: Position): State => {
-  const board = [...state.board]
-  const checkerType = board[from.row][from.col].checkerType
-  board[from.row][from.col].checkerType = null
-
-  if (Math.abs(from.row - to.row) === 2) {
-    const capturedRow = (from.row + to.row) / 2
-    const capturedCol = (from.col + to.col) / 2
-    board[capturedRow][capturedCol].checkerType = null
-  }
-
-  board[to.row][to.col].checkerType = checkerType
-
-  return { ...state, board }
 }
 
 export const getHighlightStatus = (
