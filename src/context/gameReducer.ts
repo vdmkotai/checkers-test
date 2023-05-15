@@ -1,10 +1,5 @@
 import { Action, Cell, CheckerType, Move, State } from './types'
-import {
-  getAllValidMoves,
-  getValidMoves,
-  makeAIMove,
-  moveChecker,
-} from './gameLogic'
+import { getValidMoves, makeAIMove, moveChecker } from './gameLogic'
 
 export enum PlayerSide {
   Red = 'Red',
@@ -89,7 +84,6 @@ export const gameReducer = (state: State, action: Action): State => {
     case 'AI_MOVE': {
       let newState = { ...state }
 
-      // Simulate AI's turn
       const aiMove = makeAIMove(newState, CheckerType.Black)
       if (aiMove) {
         const aiValidMove = getValidMoves(

@@ -213,31 +213,6 @@ export function getValidMoves(
   return validMoves
 }
 
-export const getAllValidMoves = (
-  state: State,
-  checkerType: CheckerType
-): Move[] => {
-  const moves: Move[] = []
-
-  for (let row = 0; row < state.board.length; row++) {
-    for (let col = 0; col < state.board[row].length; col++) {
-      const cell = state.board[row][col]
-      if (
-        cell.checkerType === checkerType ||
-        cell.checkerType ===
-          (checkerType === CheckerType.Red
-            ? CheckerType.RedKing
-            : CheckerType.BlackKing)
-      ) {
-        const validMoves = getValidMoves(state, row, col)
-        moves.push(...validMoves)
-      }
-    }
-  }
-
-  return moves
-}
-
 export const chooseRandomMove = (moves: Move[]): Move | null => {
   if (moves.length === 0) return null
 

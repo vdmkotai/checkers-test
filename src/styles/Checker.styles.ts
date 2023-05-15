@@ -1,4 +1,3 @@
-// Checker.styles.ts
 import styled from '@emotion/styled'
 
 interface CheckerWrapperProps {
